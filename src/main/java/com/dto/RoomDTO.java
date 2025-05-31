@@ -1,4 +1,4 @@
-package com.bookit.BookIT.dto;
+package com.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.bookit.BookIT.entity.Booking;

@@ -1,25 +1,29 @@
-package com.bookit.BookIT.entity
-
-
-import java.lang.annotation.Inherited;
+package com.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+//import jakarta.persistence.*;
+//import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "rooms")
 public class Room {
 
-    @id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String roomType;
-    private String roomPrice;
+    private BigDecimal roomPrice;
     private String roomPhotoUrl;
     private String roomDescription;
-    private list <Booking> bookings = new ArrayList<>();
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 
 
     @Override
