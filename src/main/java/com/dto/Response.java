@@ -1,11 +1,13 @@
-package com.bookit.BookIT.dto;
+package com.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
 @Data
-@JsonIclude(JsonIclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class Response {
     private int statusCode;
