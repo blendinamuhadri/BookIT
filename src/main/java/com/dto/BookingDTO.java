@@ -1,14 +1,11 @@
-package com.bookit.BookITdto;
-
+package com.dto;
 
 import java.time.LocalDate;
 
 import com.entity.Room;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +13,7 @@ import lombok.Data;
 
 
 @Data
-@JsonIclude(JsonIclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class BookingDTO {
 

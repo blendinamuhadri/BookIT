@@ -1,7 +1,7 @@
-package com.entity;
+package com.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.bookit.BookIT.entity.Booking;
+import com.entity.Booking;
 import lombok.Data;
 
 import java.math.BigDecimal;

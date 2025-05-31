@@ -1,16 +1,15 @@
-package com.bookit.BookIT.dto;
+package com.dto;
 
-import com.fasterxel.jackson.annotation.JsonInclude;
-import com.bookit.BookIT.entity.Booking;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.entity.Booking;
 
-import lanbok.List;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@JsonIclude(JsonIclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
     private Long id;
@@ -18,6 +17,6 @@ public class UserDTO {
     private String name;
     private String phoneNumber;
     private String role;
-    private List <Booking> bookings = new ArrayList<>();
-    
+    private List <BookingDTO> bookings = new ArrayList<>();
+
 }
