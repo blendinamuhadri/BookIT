@@ -45,7 +45,7 @@ public class JWTUtils {
         return claimsTFunction.apply(Jwts.parser().verifyWith(Key).build().parseSignedClaims(token).getPayload());
     }
 
-    private boolean isValidToken(String token, UserDetails userDetails){
+    public boolean isValidToken(String token, UserDetails userDetails){
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 
