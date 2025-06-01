@@ -77,7 +77,7 @@ public class Utils {
 
     }
 
-    public static UserDTO mapUserEntityToUserDTOPlUserBookingsAndRooms(User user){
+    public static UserDTO mapUserEntityToUserDTOPlusUserBookingsAndRoom(User user){
         UserDTO userDTO = new UserDTO();
 
         userDTO.setId(user.getId());

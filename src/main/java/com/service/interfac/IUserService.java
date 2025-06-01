@@ -1,7 +1,8 @@
 package com.service.interfac;
 
-import com.amazonaws.Response;
+import com.dto.Response;
 import com.dto.LoginRequest;
+import com.entity.User;
 
 public interface IUserService {
     Response register(User user);
@@ -16,6 +17,6 @@ public interface IUserService {
 
     Response getUserById(String userId);
 
-    Response getMyInfo(String userId);
+    Response getMyInfo(String email);
 
 }
