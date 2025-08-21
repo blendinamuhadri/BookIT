@@ -1,6 +1,15 @@
 import React, { useState } from "react";
+import RoomResult from "../common/RoomResult";
 
 const HomePage = () => {
+
+  const [RoomSearchResults,setRoomSearchResults,] = useState([]);
+
+
+  const handleSearchResult =(results) => {
+    setRoomSearchResults(results)
+
+  }
   return (
     <div className="home">
       {/* HEADER / BANNER ROOM SECTION */}
@@ -17,7 +26,9 @@ const HomePage = () => {
         </header>
       </section>
 
-      {/* SEARCH/FIND AVAILABLE ROOM SECTION */}
+      <RoomSearch handleSearchResult={handleSearchResult}/>
+      <RoomResult roomSearchResults={roomSearchResults}/>
+
       <h4><a className="view-rooms-home" href="/rooms">All Rooms</a></h4>
       <h2 className="home-services">Services at <span className="phegon-color">Phegon Hotel</span></h2>
 
