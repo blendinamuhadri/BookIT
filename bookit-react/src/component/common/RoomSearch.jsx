@@ -45,7 +45,7 @@ const RoomSearch = ({ handleSearchResult }) => {
             const formattedEndDate = endDate ? endDate.toISOString().split('T')[0] : null;
 
             const response = await ApiService.getAvailableRoomsByDateAndType(formattedStartDate,formattedEndDate,roomType);
-            if (response.setStatusCode === 200) {
+            if (response.statusCode === 200) {
                 if (response.roomList.length === 0) {
                     showError("Room Not Currently Available for the room type and selected date range");
                     return;
