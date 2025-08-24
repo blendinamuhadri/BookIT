@@ -10,6 +10,10 @@ import FindBookingPage from './component/booking_rooms/FindBookingPage';
 import RoomDetailsPage from './component/booking_rooms/RoomDetailsPage';
 import LoginPage from './component/auth/LoginPage';
 import RegisterPage from './component/auth/RegisterPage';
+import ProfilePage from './component/profile/ProfilePage';
+import EditProfilePage from './component/profile/EditProfilePage';
+import {ProtectedRoute, AdminRoute} from './service/guard';
+
 
 function App() {
   return (
@@ -18,12 +22,20 @@ function App() {
       <Navbar/>
       <div className = 'content'>
         <Routes>
-        <Route exact path = '/home' element = {<HomePage/>}/>
-        <Route exact path = '/rooms' element = {<AllRoomsPage/>}/>
-        <Route path ='/find-booking' element = {<FindBookingPage/>}/>
-        <Route path ='/room-details-book/:roomId' element = {<RoomDetailsPage/>}/>
-        <Route exact path = '/login' element = {<LoginPage/>}/>
-        <Route exact path = '/register' element = {<RegisterPage/>}/>
+          {/* Public routes */}
+          <Route exact path="/home" element={<HomePage />} />
+          <Route path="/rooms" element={<AllRoomsPage />} />
+          <Route path="/find-booking" element={<FindBookingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          {/* Authenticated user routes */}
+          <Route path="/room-details-book/:roomId" element={<ProtectedRoute element={<RoomDetailsPage />} />}/>
+          <Route path="/profile" element={<ProtectedRoute element={<ProfilePage />} />}/>
+          <Route path="/edit-profile"element={<ProtectedRoute element={<EditProfilePage />} />}/>
+
+          {/* Admin auth router*/}
+          <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </div>
       <FooterComponent/>
