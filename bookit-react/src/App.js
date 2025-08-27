@@ -35,6 +35,14 @@ function App() {
           <Route path="/edit-profile"element={<ProtectedRoute element={<EditProfilePage />} />}/>
 
           {/* Admin auth router*/}
+          <Route path="/admin" element={<AdminRoute element={<AdminPage />} />}/>
+          <Route path="/admin/manage-rooms" element={<AdminRoute element={<ManageRoomsPage />} />}/>
+          <Route path="/admin/manage-bookings" element={<AdminRoute element={<ManageBookingsPage />} />}/>
+          <Route path="/admin/add-room" element={<AdminRoute element={<AddRoomPage />} />}/>
+
+          <Route path="/admin/edit-room/:roomId" element={<AdminRoute element={<EditRoomPage />} />}/>
+          <Route path="/admin/edit-booking/:bookingCode" element={<AdminRoute element={<EditBookingPage />} />}/>
+
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </div>
