@@ -10,7 +10,9 @@ import com.entity.User;
 import com.dto.LoginRequest;
 import com.dto.Response;
 import com.service.interfac.IUserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

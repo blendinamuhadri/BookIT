@@ -34,7 +34,8 @@ public class User implements UserDetails{
 
     @NotBlank(message = "Password Number is required")
     private String password;
-
+    
+    @Column(columnDefinition = "ENUM('ROLE_USER','ROLE_ADMIN')")
     private String role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

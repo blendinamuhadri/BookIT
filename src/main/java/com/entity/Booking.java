@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -33,13 +33,19 @@ public class Booking {
     private int totalNumOfGuest;
     private String bookingConfirmationCode;
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
+
+    @Column(name = "booking_status", columnDefinition = "ENUM('PENDING','CONFIRMED','CANCELLED')")
+    private String bookingStatus;
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
     public void calculateTotalNumberOfGuest() {
     this.totalNumOfGuest = this.numOfAdults + this.numOfChildren;

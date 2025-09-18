@@ -22,6 +22,11 @@ public class Room {
     private BigDecimal roomPrice;
     private String roomPhotoUrl;
     private String roomDescription;
+    @Column(name = "max_guests")
+    private Integer maxGuests;
+
+    @Column(columnDefinition = "ENUM('AVAILABLE','OCCUPIED','MAINTENANCE')")
+    private String status;
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();
 

@@ -28,14 +28,14 @@ public class UserController {
     }
 
     @GetMapping("/get-by-id/{userId}")
-    public ResponseEntity<Response> deleteUser(@PathVariable("userId")String userId){
-        Response response = userService.deleteUser(userId);
+    public ResponseEntity<Response> getUserById(@PathVariable("userId")String userId){
+        Response response = userService.getUserById(userId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
     @GetMapping("/delete/{userId}")
-    public ResponseEntity<Response> getUserById(@PathVariable("userId")String userId){
-        Response response = userService.getUserById(userId);
+    public ResponseEntity<Response> deleteUser(@PathVariable("userId")String userId){
+        Response response = userService.deleteUser(userId);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
