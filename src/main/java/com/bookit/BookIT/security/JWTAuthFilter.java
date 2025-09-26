@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-//import com.bookit.BookIT.service.CustomUserDetailsService;
+import com.bookit.BookIT.service.CustomUserDetailsService;
 import com.bookit.BookIT.utils.JWTUtils;
 
 import jakarta.servlet.FilterChain;
@@ -29,7 +29,7 @@ public class JWTAuthFilter extends OncePerRequestFilter{
     private JWTUtils jwtUtils;
 
     @Autowired
-    private CachingUserDetailsService cachingUserDetailsService; 
+    private CustomUserDetailsService customUserDetailsService; 
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)throws ServletException, IOException{
@@ -47,7 +47,7 @@ public class JWTAuthFilter extends OncePerRequestFilter{
         userEmail = jwtUtils.extractUsername(jwtToken);
 
         if (userEmail !=null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = cachingUserDetailsService.loadUserByUsername(userEmail);
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
 
             if(jwtUtils.isValidToken(jwtToken, userDetails)){
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();

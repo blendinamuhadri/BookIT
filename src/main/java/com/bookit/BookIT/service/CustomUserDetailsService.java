@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.bookit.BookIT.exception.OurException;
 import com.bookit.BookIT.repo.UserRepository;
 
+@Service
 public class CustomUserDetailsService implements UserDetailsService{
 
     @Autowired
