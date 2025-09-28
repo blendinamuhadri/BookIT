@@ -155,12 +155,12 @@ export default class ApiService{
 
     static isAdmin() {
         const role = localStorage.getItem('role');
-        return role === "ADMIN"
+        return role === "ROLE_ADMIN";
     }
 
     static isUser() {
         const role = localStorage.getItem('role');
-        return role === "USER"
+        return role === "ROLE_USER";
     }
 
 

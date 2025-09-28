@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import ApiService from '../../service/ApiService';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function RegisterPage() {
   const navigate = useNavigate();
+
+  const API_URL = 'http://localhost:8080/api/auth/register'; 
 
   const [formData, setFormData] = useState({
     name: '',
@@ -59,6 +62,10 @@ function RegisterPage() {
       setTimeout(() => setErrorMessage(''), 5000);
     }
   };
+  const registerUser = (userData) => {
+  return axios.post(API_URL, userData);
+};
+
 
   return (
     <div className="auth-container">
