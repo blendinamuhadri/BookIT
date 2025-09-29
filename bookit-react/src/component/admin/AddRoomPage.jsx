@@ -78,16 +78,13 @@ const AddRoomPage = () => {
     }
 
     try {
-      const formData = new FormData();
-      formData.append('roomType', roomDetails.roomType);
-      formData.append('roomPrice', roomDetails.roomPrice);
-      formData.append('roomDescription', roomDetails.roomDescription);
+      const roomData = {
+      roomType: roomDetails.roomType,
+      roomPrice: roomDetails.roomPrice,
+      roomDescription: roomDetails.roomDescription
+      };
 
-      if (file) {
-        formData.append('photo', file);
-      }
-
-      const result = await ApiService.addRoom(formData);
+      const result = await ApiService.addRoom(roomData);
 
       if (result.statusCode === 200) {
         setSuccess('Room Added successfully.');

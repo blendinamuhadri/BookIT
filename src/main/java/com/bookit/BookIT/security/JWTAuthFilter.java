@@ -32,20 +32,20 @@ public class JWTAuthFilter extends OncePerRequestFilter{
     private CustomUserDetailsService customUserDetailsService; 
 
     @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)throws ServletException, IOException{
+    protected void doFilterInternal(HttpServletRequest request,HttpServletResponse response,FilterChain filterChain)throws ServletException,IOException{
 
-        String path = request.getServletPath();
+        /*String path = request.getServletPath();
         if (path.startsWith("/auth/")) {
             filterChain.doFilter(request, response);
             return;
-        }
+        }*/
 
-        
+
         final String authHeader = request.getHeader("Authorization");
         final String jwtToken;
         final String userEmail;
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.isBlank() || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -62,6 +62,7 @@ public class JWTAuthFilter extends OncePerRequestFilter{
                 token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 securityContext.setAuthentication(token);
                 SecurityContextHolder.setContext(securityContext);
+                 System.out.println("Authorities set: " + userDetails.getAuthorities());
             }
         }
 

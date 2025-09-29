@@ -14,7 +14,7 @@ const RoomSearch = ({ handleSearchResult }) => {
         const fetchRoomTypes = async () => {
             try {
                 const types = await ApiService.getRoomTypes();
-                setRoomType(types)
+                setRoomTypes(types)
         
             } catch (err) {
             console.log(err.message);

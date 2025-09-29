@@ -54,8 +54,8 @@ export default class ApiService{
         return response.data;
     }
 
-    static async addRoom(formData){
-        const result = await axios.post(`${this.BASE_URL}/rooms/add`,formData, {
+    static async addRoom(roomData){
+        const result = await axios.post(`${this.BASE_URL}/rooms/add-room`,roomData, {
             headers:{
                 ...this.getHeader(),
                 'Content-Type' : 'multipart/form-data'
@@ -91,8 +91,10 @@ export default class ApiService{
         return result.data;
     }
 
-    static async getAllRoomById(roomId){
-        const result = await axios.get(`${this.BASE_URL}/rooms/room-by-id/${roomId}`)
+    static async getRoomById(roomId){
+        const result = await axios.get(`${this.BASE_URL}/rooms/room-by-id/${roomId}`, {
+        headers: this.getHeader()
+    });
         return result.data;
     }
 
@@ -107,7 +109,7 @@ export default class ApiService{
         const result = await axios.put(`${this.BASE_URL}/rooms/update/${roomId}` , formData,{
             headers: {
                 ...this.getHeader(),
-                'contend-Type':'multipart/form-data'
+                'Contend-Type':'multipart/form-data'
             }
         });
         return result.data;
