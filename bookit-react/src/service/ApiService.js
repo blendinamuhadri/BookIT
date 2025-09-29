@@ -5,10 +5,7 @@ export default class ApiService{
 
     static getHeader(){
         const token = localStorage.getItem("token");
-        return {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-        };
+        return token ? { Authorization: `Bearer ${token}` } : {};
     }
 
     static async registerUser(registration){
@@ -58,7 +55,7 @@ export default class ApiService{
     }
 
     static async addRoom(formData){
-        const result = await axios.post(`${this.BASE_URL}/users/add`,formData, {
+        const result = await axios.post(`${this.BASE_URL}/rooms/add`,formData, {
             headers:{
                 ...this.getHeader(),
                 'Content-Type' : 'multipart/form-data'
@@ -81,12 +78,16 @@ export default class ApiService{
     }
 
     static async getRoomTypes(){
-        const response = await axios.get(`${this.BASE_URL}/rooms/types`)
+        const response = await axios.get(`${this.BASE_URL}/rooms/types`,{
+        headers: this.getHeader()
+        });
         return response.data;
     }
 
     static async getAllRooms(){
-        const result = await axios.get(`${this.BASE_URL}/rooms/all`)
+        const result = await axios.get(`${this.BASE_URL}/rooms/all`, {
+        headers: this.getHeader()
+        });
         return result.data;
     }
 

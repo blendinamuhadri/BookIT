@@ -4,7 +4,9 @@ import javax.crypto.SecretKey;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.function.Function;
+import java.util.Map;
 
 import javax.crypto.spec.SecretKeySpec;
 
@@ -29,6 +31,8 @@ public class JWTUtils {
     }
 
     public String generateToken(UserDetails userDetails){
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("roles", userDetails.getAuthorities()); 
         return Jwts.builder()
             .subject(userDetails.getUsername())
             .issuedAt(new Date(System.currentTimeMillis()))

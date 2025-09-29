@@ -37,8 +37,8 @@ public class RoomController {
     @Autowired
     private IBookingService bookingService;
 
-    @PostMapping("/add")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/rooms")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> addNewRoom(
         @RequestParam(value = "photo", required = false)MultipartFile photo,
         @RequestParam(value = "roomType", required = false)String roomType,
@@ -94,7 +94,7 @@ public class RoomController {
 }
 
     @PutMapping("/update/{roomId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> updateRoom  (@PathVariable Long id,
                                                 @RequestParam(value = "photo", required = false)MultipartFile photo,
                                                 @RequestParam(value = "roomType", required = false)String roomType,
