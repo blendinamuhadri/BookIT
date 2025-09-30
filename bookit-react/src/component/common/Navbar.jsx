@@ -12,7 +12,7 @@ function Navbar() {
     const isLogout = window.confirm("Are you sure you really want to logout");
     if(isLogout){
         ApiService.logout();
-        navigate('/home')
+        navigate('/login')
     }
   }
 

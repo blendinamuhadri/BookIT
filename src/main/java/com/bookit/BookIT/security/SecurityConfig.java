@@ -17,8 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.bookit.BookIT.service.CustomUserDetailsService;
+import org.springframework.http.HttpMethod;
+
 
 @Configuration
 @EnableMethodSecurity
@@ -37,12 +38,7 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/rooms/**").permitAll()
-                        .requestMatchers("/rooms/**").hasRole("ADMIN") 
-                        .requestMatchers("/bookings/**").hasAnyRole("USER", "ADMIN")
-
-
+                        .requestMatchers("/auth/**", "/rooms/**" ,"/bookings/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

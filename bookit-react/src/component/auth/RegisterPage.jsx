@@ -6,7 +6,7 @@ import axios from 'axios';
 function RegisterPage() {
   const navigate = useNavigate();
 
-  const API_URL = 'http://localhost:8080/api/auth/register'; 
+  const API_URL = 'http://localhost:4040/api/auth/register'; 
 
   const [formData, setFormData] = useState({
     name: '',
