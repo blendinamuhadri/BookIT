@@ -38,7 +38,7 @@ public class RoomController {
     private IBookingService bookingService;
 
     @PostMapping("/rooms")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Response> addNewRoom(
         @RequestParam(value = "photo", required = false)MultipartFile photo,
         @RequestParam(value = "roomType", required = false)String roomType,
@@ -94,8 +94,8 @@ public class RoomController {
 }
 
     @PutMapping("/update/{roomId}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response> updateRoom  (@PathVariable Long id,
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<Response> updateRoom  (@PathVariable("roomId") Long id,
                                                 @RequestParam(value = "photo", required = false)MultipartFile photo,
                                                 @RequestParam(value = "roomType", required = false)String roomType,
                                                 @RequestParam(value = "roomPrice", required = false)BigDecimal roomPrice,
@@ -108,7 +108,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/delete/{roomId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Response> deleteRoom(@PathVariable Long roomId){
         Response response =roomService.deleteRoom(roomId);
         return ResponseEntity.status(response.getStatusCode()).body(response);

@@ -36,7 +36,7 @@ public class User implements UserDetails{
     private String password;
     
     @Column(columnDefinition = "ENUM('ROLE_USER','ROLE_ADMIN')")
-    private String role="ROLE_USER";
+    private String role= "ROLE_USER";
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<>();

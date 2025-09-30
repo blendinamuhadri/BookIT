@@ -24,7 +24,7 @@ function LoginPage() {
       const response = await ApiService.loginUser({email, password});
       if (response.statusCode === 200) {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('role', response.role)
+        localStorage.setItem('role', response.role);
         navigate(from, { replace: true });
       }
       else {

@@ -38,7 +38,22 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/**", "/rooms/**" ,"/bookings/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/rooms/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/bookings/get-by-confirmation-code/**").permitAll()
+
+                        .requestMatchers("/users/all").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/rooms/rooms").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/rooms/update/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/rooms/delete/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/bookings/all").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/rooms/add-room").hasAuthority("ROLE_ADMIN")
+
+                        .requestMatchers("/users/get-logged-in-profile-info").authenticated()
+                        .requestMatchers("/users/get-user-bookings/**").authenticated()
+                        .requestMatchers("/bookings/book-room/**").authenticated()
+                        .requestMatchers("/bookings/cancel/**").authenticated()
+
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
