@@ -53,6 +53,7 @@ public class SecurityConfig {
                         .requestMatchers("/users/get-user-bookings/**").authenticated()
                         .requestMatchers("/bookings/book-room/**").authenticated()
                         .requestMatchers("/bookings/cancel/**").authenticated()
+                        .requestMatchers("/rooms/available-rooms-by-date-and-type").authenticated()
 
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

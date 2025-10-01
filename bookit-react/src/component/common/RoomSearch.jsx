@@ -50,9 +50,8 @@ const RoomSearch = ({ handleSearchResult }) => {
                     showError("Room Not Currently Available for the room type and selected date range");
                     return;
                 }
-
-                handleSearchResult(response.roomList); 
-                setError('');
+                handleSearchResult(response.roomList);
+              setError('');
             }
         } catch (err) {
             showError(err.response.data.message);

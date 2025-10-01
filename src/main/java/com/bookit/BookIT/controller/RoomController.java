@@ -37,7 +37,7 @@ public class RoomController {
     @Autowired
     private IBookingService bookingService;
 
-    @PostMapping("/rooms")
+    @PostMapping("/add-room")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Response> addNewRoom(
         @RequestParam(value = "photo", required = false)MultipartFile photo,

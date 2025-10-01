@@ -91,7 +91,7 @@ const EditBookingPage = () => {
             </div>
 
             <br />
-            <button className="achieve-booking"onClick={() => achieveBooking(bookingDetails.id)}>Achieve Booking </button>
+            <button className="achieve-booking"onClick={() => achieveBooking(bookingDetails.id)}>Delete Booking </button>
           </div>
         )
       )}

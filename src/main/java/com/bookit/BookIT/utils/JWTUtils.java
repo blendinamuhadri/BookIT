@@ -20,8 +20,11 @@ import io.jsonwebtoken.Jwts;
 @Service
 public class JWTUtils {
 
-    private static final long EXPIRATION_TIME = 1000 * 60 * 24 * 7 ; //for 7 days
+    private static final long EXPIRATION_TIME = 1000L * 60 * 60 * 24 * 7; //for 7 days
     
+    private static final long REFRESH_EXPIRATION_TIME =1000L * 60 * 60 * 24 * 30;
+
+
     private final SecretKey Key;
 
     private JWTUtils(){
@@ -40,6 +43,14 @@ public class JWTUtils {
             .signWith(Key)
             .compact();
     }
+    public String generateRefreshToken(UserDetails userDetails){
+    return Jwts.builder()
+        .setSubject(userDetails.getUsername())
+        .setIssuedAt(new Date(System.currentTimeMillis()))
+        .setExpiration(new Date(System.currentTimeMillis() + REFRESH_EXPIRATION_TIME))
+        .signWith(Key)
+        .compact();
+}
 
     public String extractUsername(String token){
         return extractClaims(token, Claims :: getSubject);

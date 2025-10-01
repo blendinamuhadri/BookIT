@@ -7,6 +7,14 @@ export default class ApiService{
         const token = localStorage.getItem("token");
         return token ? { Authorization: `Bearer ${token}` } : {};
     }
+    static async refreshToken() {
+        const refreshToken = localStorage.getItem("refreshToken"); // ose merr nga cookie
+        const response = await axios.post(`${this.BASE_URL}/auth/refresh`, null, {
+            headers: { Authorization: `Bearer ${refreshToken}` }
+        });
+        localStorage.setItem("token", response.data.accessToken);
+        return response.data.accessToken;
+    }
 
     static async registerUser(registration){
         const response = await axios.post(`${this.BASE_URL}/auth/register`, registration)
@@ -71,11 +79,12 @@ export default class ApiService{
 
     static async getAvailableRoomsByDateAndType(checkInDate, checkOutDate, roomType){
         const result = await axios.get(
-            `${this.BASE_URL}/users/available-rooms-by-date-and-type?checkInDate=${checkInDate}
-            &checkOutDate=${checkOutDate}&roomType=${roomType}`
+            `${this.BASE_URL}/rooms/available-rooms-by-date-and-type?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&roomType=${roomType}`,
+            { headers: this.getHeader() }
         )
         return result.data;
     }
+
 
     static async getRoomTypes(){
         const response = await axios.get(`${this.BASE_URL}/rooms/types`,{
@@ -133,7 +142,9 @@ export default class ApiService{
     }
 
     static async getBookingByConfirmationCode(bookingCode) {
-        const result = await axios.get(`${this.BASE_URL}/bookings/get-by-confirmation-code/${bookingCode}`);
+        const result = await axios.get(`${this.BASE_URL}/bookings/get-by-confirmation-code/${bookingCode}`,
+        { headers: this.getHeader() }
+    );
         return result.data;
     }
 
@@ -164,8 +175,5 @@ export default class ApiService{
     static isUser() {
         const role = localStorage.getItem('role');
         return role === "ROLE_USER";
-    }
-
-
-    
+    }  
 }
